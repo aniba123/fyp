@@ -1,0 +1,232 @@
+/* Base Styles & Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary-color: #4F46E5;      /* Indigo-600 */
+  --primary-hover: #4338CA;      /* Indigo-700 */
+  --text-color: #1F2937;         /* Gray-800 */
+  --text-light: #6B7280;         /* Gray-500 */
+  --border-color: #E5E7EB;       /* Gray-200 */
+  --input-focus: #A5B4FC;        /* Indigo-300 */
+  --error-color: #EF4444;        /* Red-500 */
+  --success-color: #10B981;      /* Emerald-500 */
+  --social-icon: #4B5563;        /* Gray-600 */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Main Container */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #F9FAFB;      /* Gray-50 */
+  padding: 1rem;
+}
+
+/* Login Card */
+.login-card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  width: 100%;
+  max-width: 28rem;              /* 448px */
+  padding: 2.5rem;              /* 40px */
+  text-align: center;
+}
+
+/* Brand Logo */
+.brand-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 1.25rem;            /* 20px */
+}
+
+.brand-logo svg {
+  width: 2rem;                   /* 32px */
+  height: 2rem;
+  margin-right: 0.5rem;
+}
+
+/* Title */
+.login-title {
+  font-size: 1.5rem;             /* 24px */
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+}
+
+/* Form Elements */
+.form-group {
+  margin-bottom: 1.25rem;        /* 20px */
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.875rem;          /* 14px */
+  font-weight: 500;
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+}
+
+.password-label-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem;             /* 12px */
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 0.875rem;          /* 14px */
+  transition: all 0.2s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+/* Login Button */
+.login-button {
+  width: 100%;
+  padding: 0.75rem;             /* 12px */
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.875rem;          /* 14px */
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 0.5rem;
+}
+
+.login-button:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Links */
+.forgot-password {
+  font-size: 0.75rem;           /* 12px */
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.forgot-password:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
+
+.signup-option {
+  margin-top: 1.5rem;
+  font-size: 0.875rem;          /* 14px */
+  color: var(--text-light);
+}
+
+.signup-link {
+  color: var(--primary-color);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.signup-link:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
+
+/* Social Login */
+.social-login {
+  margin-top: 2rem;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;          /* 14px */
+  color: var(--text-light);
+  margin-bottom: 1rem;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.divider::before {
+  margin-right: 0.5rem;
+}
+
+.divider::after {
+  margin-left: 0.5rem;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.social-button {
+  width: 2.5rem;                /* 40px */
+  height: 2.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: white;
+  color: var(--social-icon);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-button:hover {
+  background-color: #F3F4F6;    /* Gray-100 */
+  color: var(--primary-color);
+}
+
+.social-button svg {
+  width: 1.25rem;               /* 20px */
+  height: 1.25rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 480px) {
+  .login-card {
+    padding: 1.5rem;
+  }
+  
+  .login-title {
+    font-size: 1.25rem;         /* 20px */
+  }
+}
+
+
+.error-message {
+  color: #D93025;
+  background-color: #FEE;
+  padding: 12px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
