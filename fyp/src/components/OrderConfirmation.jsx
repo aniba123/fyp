@@ -1,9 +1,18 @@
 import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+
+import { useCart } from '../components/CartContext'; // Adjust path as needed
+
 import './OrderConfirmation.css'; // Make sure to create this CSS file
 
 function OrderConfirmation() {
   const { state: orderData } = useLocation();
+  const { clearCart } = useCart();
 
+   useEffect(() => {
+    clearCart(); // ✅ Clear cart on confirmation page load
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   if (!orderData) {
     return (
       <div className="no-order">
@@ -14,7 +23,7 @@ function OrderConfirmation() {
   }
 
   const { customer, items, total, orderNumber, date } = orderData;
-  const shipping = 5.99; // Example shipping cost
+  const shipping = 4.99; // Example shipping cost
   const subtotal = total - shipping;
 
   // Generate Google Maps URL
@@ -25,13 +34,13 @@ function OrderConfirmation() {
   return (
     <div className="order-confirmation">
       <div className="confirmation-header">
-        <h1>Thank you, {customer.fullName}!</h1>
+        <h1>Thank you, {customer.name}!</h1>
         <p className="confirmation-message">Your order is confirmed. You'll receive a confirmation email shortly.</p>
         <div className="order-meta">
           <p><strong>Order #:</strong> {orderNumber}</p>
           <p><strong>Date:</strong> {date}</p>
           <p><strong>Email:</strong> {customer.email}</p>
-          <p><strong>Contact:</strong> {customer.contactNumber}</p>
+          <p><strong>Contact:</strong> {customer. phone}</p>
         </div>
       </div>
 
@@ -99,7 +108,7 @@ function OrderConfirmation() {
             <h3>Payment Method</h3>
             <p>
               {customer.paymentMethod === 'COD' ? 'Cash on Delivery' : 
-               customer.paymentMethod === 'CreditCard' ? 'Credit Card' : 'PayPal'}
+               customer.paymentMethod === 'JazzCash' ? 'JazzCash' : 'Payoneer'}
             </p>
           </div>
 

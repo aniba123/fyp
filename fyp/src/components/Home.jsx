@@ -126,42 +126,6 @@ const itemVariants = {
 
 <StatsSection/>
 
-        {/* <section className={styles.section} ref={ref}>
-      <div className={styles.container}>
-        <h2 className={styles.sectionTitle}>What Customers Say About Us</h2>
-        <div className={styles.statsGrid}>
-          {statsData.map((stat) => (
-            <div key={stat.id} className={styles.statCard}>
-              <div className={styles.animationContainer}>
-                <Lottie
-                  animationData={stat.animation}
-                  loop={true}
-                  autoplay={true}
-                  className={styles.lottieAnimation}
-                />
-              </div>
-               <div className={styles.statContent}>
-                <h3 className={styles.statNumber}>
-                  {inView ? (
-                    <CountUp
-                      start={0}
-                      end={stat.value}
-                      suffix={stat.suffix}
-                      duration={stat.duration}
-                      decimals={stat.value % 1 !== 0 ? 1 : 0}
-                    />
-                  ) : (
-                    '0' + stat.suffix
-                  )}
-                </h3>
-                <p className={styles.statTitle}>{stat.title}</p>
-              </div>
-              </div>
-          ))}
-        </div>
-      </div>
-    </section> */}
-
  <section className="featured-section">
         <div className="section-container">
           {/* AI Shopping Assistant Banner */}
@@ -180,7 +144,7 @@ const itemVariants = {
                   <FiMessageSquare className="button-icon" />
                   Start Chat Now
                 </button> */}
-                <Link to="/orders" className="ai-chat-button">
+                <Link to="/ai" className="ai-chat-button">
   <FiMessageSquare className="button-icon" />
   Start Chat Now
 </Link>

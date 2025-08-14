@@ -1,7 +1,9 @@
+
 import React, { useState } from 'react';
 import { useCart } from './CartContext';
 import { useNavigate } from 'react-router-dom';
 import './CheckOutForm.css';
+import axios from 'axios';
 
 const CheckoutForm = () => {
   const { cart, totalPrice } = useCart();
@@ -15,32 +17,66 @@ const CheckoutForm = () => {
     state: '',
     zipCode: '',
     contactNumber: '',
-    paymentMethod: 'COD'
+    paymentMethod: 'Cash on Delivery',
+    cardNumber: '',
+    expiryDate: '',
+    cvv: ''
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    
-    // Generate random order number
-    const orderNumber = Math.floor(Math.random() * 1000000);
-    
-    // Prepare order data
-    const orderData = {
-      customer: formData,
-      items: cart,
-      total: totalPrice,
-      orderNumber,
-      date: new Date().toLocaleDateString()
-    };
+  const orderNumber = Math.floor(Math.random() * 1000000);
 
-    // Navigate to confirmation page with state
-    navigate('/order-confirmation', { state: orderData });
+  const orderData = {
+    customer: {
+      name: formData.fullName,
+      email: formData.email,
+      address: formData.address,
+      phone: formData.contactNumber,
+    },
+    items: cart.map(item => ({
+      productId: item._id || item.productId || "", // fallback in case _id missing
+      name: item.name,
+      price: item.price,
+      quantity: item.quantity,
+    })),
+    total: totalPrice,
+    orderNumber,
+    date: new Date().toLocaleDateString(),
   };
+
+  console.log("Sending order data:", orderData);
+
+  try {
+    const response = await axios.post(
+      // "http://localhost:5000/api/orders",
+        "http://localhost:5000/api/confirm-order",  
+
+      orderData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+
+
+    if (response.data.message.includes("Order placed")) {
+  navigate("/order-confirmation", { state: orderData });
+}
+
+  } catch (error) {
+    console.error("Order failed:", error);
+    alert("Order failed. Please try again.");
+  }
+};
+
 
   return (
     <div className="checkout-form-container">
@@ -48,7 +84,6 @@ const CheckoutForm = () => {
         <h2>Checkout</h2>
         
         <form onSubmit={handleSubmit}>
-          {/* All your existing form fields remain exactly the same */}
           <div className="form-group">
             <label>Full Name*</label>
             <input
@@ -125,18 +160,63 @@ const CheckoutForm = () => {
             />
           </div>
 
+          {/* Updated Payment Method Section */}
           <div className="form-group">
-            <label>Payment Method</label>
+            <label>Payment Method*</label>
             <select
               name="paymentMethod"
               value={formData.paymentMethod}
               onChange={handleChange}
+              required
             >
-              <option value="COD">Cash on Delivery</option>
-              <option value="CreditCard">Credit Card</option>
-              <option value="PayPal">PayPal</option>
+              <option value="Cash on Delivery">Cash on Delivery</option>
+              <option value="JazzCash">JazzCash</option>
+              <option value="Payoneer">Payoneer</option>
             </select>
           </div>
+
+          {/* Card Details Section - Only shown when JazzCash or Payoneer is selected */}
+          {(formData.paymentMethod === 'JazzCash' || formData.paymentMethod === 'Payoneer') && (
+            <div className="card-details">
+              <div className="form-group">
+                <label>Card Number*</label>
+                <input
+                  type="text"
+                  name="cardNumber"
+                  value={formData.cardNumber}
+                  onChange={handleChange}
+                  placeholder="1234 5678 9012 3456"
+                  required={formData.paymentMethod !== 'Cash on Delivery'}
+                />
+              </div>
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Expiry Date (MM/YY)*</label>
+                  <input
+                    type="text"
+                    name="expiryDate"
+                    value={formData.expiryDate}
+                    onChange={handleChange}
+                    placeholder="MM/YY"
+                    required={formData.paymentMethod !== 'Cash on Delivery'}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>CVV*</label>
+                  <input
+                    type="text"
+                    name="cvv"
+                    value={formData.cvv}
+                    onChange={handleChange}
+                    placeholder="123"
+                    required={formData.paymentMethod !== 'Cash on Delivery'}
+                  />
+                </div>
+              </div>
+            </div>
+          )}
 
           <div className="order-summary">
             <h3>Order Summary</h3>

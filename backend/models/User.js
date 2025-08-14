@@ -1,7 +1,9 @@
-const mongoose = require("mongoose");
+
+
+import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
-  name: String,
+  name: { type: String, required: true },  // <--- ye hona chahiye
   email: { type: String, unique: true },
   password: String,
 
@@ -10,7 +12,8 @@ const userSchema = new mongoose.Schema({
   resetTokenExpiry: Date,
 
   // ✅ New field to track password reset time
-  passwordResetAt: Date,  // ⬅️ Add this line
+  passwordResetAt: Date,
 });
 
-module.exports = mongoose.model("User", userSchema);
+const User = mongoose.model("User", userSchema);
+export default User;
