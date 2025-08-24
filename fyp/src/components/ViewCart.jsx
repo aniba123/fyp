@@ -27,7 +27,7 @@ export default function ViewCart() {
             <div className="cart-item-details">
               <h4 className="cart-item-name">{item.name}</h4>
               <div className="cart-item-quantity">Qty: {item.quantity}</div>
-              <div className="cart-item-price">${(item.price * item.quantity).toFixed(2)}</div>
+              <div className="cart-item-price">PKR {(item.price * item.quantity).toFixed(2)}</div>
             </div>
             <button className="remove-item-btn" onClick={() => removeFromCart(key)}>Remove</button>
           </div>
@@ -35,7 +35,7 @@ export default function ViewCart() {
       })}
 
       <div className="cart-summary">
-        <strong className="cart-subtotal">Subtotal: ${totalPrice.toFixed(2)}</strong>
+        <strong className="cart-subtotal">Subtotal: PKR {totalPrice.toFixed(2)}</strong>
         <div className="cart-actions">
           <button className="clear-cart-btn" onClick={clearCart}>Clear Cart</button>
           <Link to="/checkout">

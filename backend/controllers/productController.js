@@ -2,12 +2,6 @@
 
 import Product from '../models/productModel.js'
 
-
-
-// @desc   Create a new product
-// @route  POST /api/products
-// import Product from '../models/productModel.js';
-
 export const createProduct = async (req, res) => {
   try {
     const { name, price, description, imageUrl } = req.body;

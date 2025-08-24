@@ -108,7 +108,7 @@ const AdminProducts = () => {
           <tr>
             <th>Name</th>
             <th>Category</th>
-            <th>Price ($)</th>
+            <th>Price (RS)</th>
             <th>Image</th>
             <th>Description</th>
             <th>Actions</th>

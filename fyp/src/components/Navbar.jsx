@@ -1,15 +1,14 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { FiShoppingCart, FiUser, FiMenu, FiX } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "./CartContext.jsx";
-import { useContext } from 'react';
 import { AuthContext } from './AuthContext.jsx';
 import "./Navbar.css";
 
 function Navbar() {
-    const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
@@ -40,15 +39,15 @@ function Navbar() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [cartDropdownOpen]);
 
-  // Existing navLinks array
+  // nav links
   const navLinks = [
     { name: "Home", path: "/" },
-    { name: "Shop", path: "/shop" },
-    { name: "AI Assistant", path: "/ai" },
     { name: "About", path: "/about" },
-    {
-      name:"AddProduct",path:"/AddProduct"
-    }
+            {name:"Contact Us", path:'/contact'},
+    { name: "Shop", path: "/shop" },
+
+    // {name:"AI", path:'/ai'},
+
   ];
 
   return (
@@ -78,31 +77,37 @@ function Navbar() {
                 </Link>
               </li>
             ))}
+
+            {/* only for logged in user */}
+            {user && (
+              <li>
+                <Link 
+                  to="/Add-product" 
+                  className="nav-link"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Add Product
+                </Link>
+              </li>
+            )}
           </ul>
         </nav>
 
         {/* User Actions */}
         <div className="user-actions">
-          {/* <Link to="/login" className="account-link">
-            <FiUser className="icon" />
-            <span className="account-text">Account</span>
-          </Link> */}
+          {user ? (
+            <Link to="/profile" className="account-link">
+              <FiUser className="icon" />
+              <span className="account-text">{user.name}</span>
+            </Link>
+          ) : (
+            <Link to="/login" className="account-link">
+              <FiUser className="icon" />
+              <span className="account-text">Account</span>
+            </Link>
+          )}
 
-          {/* // Replace your existing account link with this: */}
-{user ? (
-  <Link to="/profile" className="account-link">
-    <FiUser className="icon" />
-    <span className="account-text">{user.name}</span>
-  </Link>
-) : (
-  <Link to="/login" className="account-link">
-    <FiUser className="icon" />
-    <span className="account-text">Account</span>
-  </Link>
-)}
-
-          
-          {/* Enhanced Cart Link with Dropdown */}
+          {/* Cart with Dropdown */}
           <div 
             className="cart-link" 
             onClick={() => {
@@ -115,7 +120,6 @@ function Navbar() {
               <span className="cart-badge">{cartItemCount}</span>
             )}
             
-            {/* Cart Dropdown */}
             <AnimatePresence>
               {cartDropdownOpen && (
                 <motion.div 
@@ -131,7 +135,7 @@ function Navbar() {
                         {cart.slice(0, 3).map(item => (
                           <div key={item.id} className="dropdown-item">
                             <span className="dropdown-item-name">{item.name}</span>
-                            <span className="dropdown-item-price">${item.price.toFixed(2)}</span>
+                            <span className="dropdown-item-price">PKR {item.price.toFixed(2)}</span>
                           </div>
                         ))}
                         {cart.length > 3 && (
@@ -142,7 +146,7 @@ function Navbar() {
                       </div>
                       <div className="dropdown-subtotal">
                         <span>Subtotal:</span>
-                        <span>${totalPrice.toFixed(2)}</span>
+                        <span>PKR {totalPrice.toFixed(2)}</span>
                       </div>
                       <div className="dropdown-actions">
                         <Link 
@@ -202,6 +206,20 @@ function Navbar() {
                   </Link>
                 </li>
               ))}
+
+              {/* only for logged in user */}
+              {user && (
+                <li>
+                  <Link 
+                    to="/AddProduct" 
+                    className="mobile-nav-link"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    Add Product
+                  </Link>
+                </li>
+              )}
+
               <li>
                 <Link 
                   to="/account" 
@@ -216,7 +234,7 @@ function Navbar() {
         )}
       </AnimatePresence>
 
-      {/* Cart Drawer (existing) */}
+      {/* Cart Drawer */}
       <AnimatePresence>
         {cartOpen && (
           <motion.div 
@@ -243,7 +261,7 @@ function Navbar() {
                       <img src={item.image} alt={item.name} className="cart-item-image" />
                       <div className="cart-item-details">
                         <h4>{item.name}</h4>
-                        <p>${item.price.toFixed(2)} × {item.quantity}</p>
+                        <p>PKR {item.price} × {item.quantity}</p>
                         <button 
                           className="remove-item"
                           onClick={() => removeFromCart(item.id)}
@@ -258,7 +276,7 @@ function Navbar() {
                 <div className="cart-summary">
                   <div className="cart-total">
                     <span>Total:</span>
-                    <span>${totalPrice.toFixed(2)}</span>
+                    <span>PKR {totalPrice}</span>
                   </div>
                   <Link 
                     to="/checkout" 
@@ -288,16 +306,3 @@ function Navbar() {
 }
 
 export default Navbar;
-
-
-
-
-
-
-
-
-
-
-
-
-

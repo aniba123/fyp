@@ -436,7 +436,7 @@ const ProductCardComponent = ({ product }) => {
           {product.description || 'No description available'}
         </ProductDescription>
         <ProductPrice>
-          <Price>${product.price.toFixed(2)}</Price>
+          <Price>PKR {product.price.toFixed(2)}</Price>
           <AddToCartButton
             onClick={(e) => {
               e.stopPropagation();
@@ -621,17 +621,8 @@ const ProductDetailsPage = () => {
       </ProductDetailImage>
       <ProductDetailInfo>
         <h1>{product.name}</h1>
-        <DetailPrice>${product.price.toFixed(2)}</DetailPrice>
-        {/* <DetailRating>
-          <div className="stars">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} filled={i < Math.floor(product.rating)}>
-                ★
-              </Star>
-            ))}
-          </div>
-          <span className="rating-value">{product.rating} out of 5</span>
-        </DetailRating> */}
+        <DetailPrice>{product.price.toFixed(2)}</DetailPrice>
+       
         <DetailMeta>
           <p><strong>Availability:</strong> {product.stock > 0 ? 'In Stock' : 'Out of Stock'}</p>
           <p><strong>Category:</strong> {product.category}</p>

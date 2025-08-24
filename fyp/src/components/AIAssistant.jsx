@@ -171,22 +171,23 @@ const AIAssistant = () => {
     }
   }, [messages]);
 
-  // 🚀 n8n Webhook Call
-  const generateAIResponse = async (userQuery) => {
-    try {
-      const response = await fetch("http://localhost:5678/webhook/67af8e1c-ae3c-4476-8a39-19b794e1142b/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: userQuery }),
-      });
+ // 🚀 Backend API Call
+const generateAIResponse = async (userQuery) => {
+  try {
+    const response = await fetch("http://localhost:5000/api/ai/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: userQuery }),
+    });
 
-      const data = await response.json();
-      return data.reply || "Sorry, I didn’t get that.";
-    } catch (error) {
-      console.error("Error:", error);
-      return "Sorry, there was an error connecting to the assistant.";
-    }
-  };
+    const data = await response.json();
+    return data.reply || "Sorry, I didn’t get that.";
+  } catch (error) {
+    console.error("Error:", error);
+    return "Sorry, there was an error connecting to the assistant.";
+  }
+};
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();

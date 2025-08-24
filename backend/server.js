@@ -130,26 +130,32 @@
 
 
 
-
-
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
-
+import newsletterRoutes from './routes/newsletterRoutes.js';   // 👈 new line
 import authRoutes from './routes/authRoutes.js';
 import productRoutes from './routes/productRoutes.js';
 import cartRoutes from './routes/cartRoutes.js';
 import checkoutRoutes from './routes/checkout.js';
 import orderRoutes from './routes/orderRoutes.js';
 import orderConfirmationRoute from "./routes/orderConfirmationRoute.js";
-// import productRoutes from './routes/productRoutes'
+import aiRoutes from './routes/aiRoutes.js';
+import contactRoutes from "./routes/contactRoutes.js";
+
 dotenv.config();
 
 const app = express();
 
 // Middleware
-app.use(cors());
+// app.use(cors());
+app.use(cors({
+  origin: "http://localhost:5173",   // frontend ka address (React ya Next.js)
+  methods: ["GET", "POST"],          // kaunse HTTP methods allow hain
+  allowedHeaders: ["Content-Type", "Authorization"] // kaunse headers allow hain
+}));
+
 app.use(express.json());
 
 // Routes
@@ -159,7 +165,14 @@ app.use('/api/cart', cartRoutes);
 app.use('/api/checkout', checkoutRoutes);
 app.use('/api/orders', orderRoutes);
 app.use("/api", orderConfirmationRoute);
-// app.use('/api/products', productRoutes);
+app.use("/api/ai", aiRoutes);
+app.use("/api", newsletterRoutes);   // 👈 new line
+app.use("/api/contact", contactRoutes);
+
+// Debugging logs
+console.log("🔑 Azure Key:", process.env.AZURE_MODEL_KEY ? "Loaded" : "Missing");
+console.log("🌐 Azure Endpoint:", process.env.AZURE_MODEL_ENDPOINT);
+console.log("🤖 Deployment:", process.env.AZURE_MODEL_DEPLOYMENT);
 
 // Connect to MongoDB and start server
 mongoose

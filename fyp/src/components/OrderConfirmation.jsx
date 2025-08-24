@@ -79,7 +79,7 @@ function OrderConfirmation() {
                     <span className="product-name">{item.name}</span>
                     <span className="product-quantity">× {item.quantity}</span>
                   </div>
-                  <span className="product-price">${(item.price * item.quantity).toFixed(2)}</span>
+                  <span className="product-price">PKR {(item.price * item.quantity).toFixed(2)}</span>
                 </li>
               ))}
             </ul>
@@ -87,19 +87,19 @@ function OrderConfirmation() {
             <div className="summary-totals">
               <div className="summary-row">
                 <span>Subtotal</span>
-                <span>${subtotal.toFixed(2)}</span>
+                <span>PKR {subtotal.toFixed(2)}</span>
               </div>
               <div className="summary-row">
                 <span>Shipping</span>
-                <span>${shipping.toFixed(2)}</span>
+                <span>PKR {shipping.toFixed(2)}</span>
               </div>
               <div className="summary-row">
                 <span>Tax</span>
-                <span>$0.00</span> {/* You can add tax calculation if needed */}
+                <span>PKR 0.00</span> {/* You can add tax calculation if needed */}
               </div>
               <div className="summary-row total">
                 <span>Total</span>
-                <span>${total.toFixed(2)}</span>
+                <span>PKR {total.toFixed(2)}</span>
               </div>
             </div>
           </div>
@@ -114,7 +114,7 @@ function OrderConfirmation() {
 
           <div className="customer-support">
             <h3>Need Help?</h3>
-            <p>Contact our customer support at support@example.com</p>
+            <p>Contact our customer support at support@shopease.com</p>
           </div>
         </div>
       </div>

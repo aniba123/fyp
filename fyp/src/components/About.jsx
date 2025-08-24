@@ -15,9 +15,9 @@ const About = () => {
   // Target values for our stats
   const targetStats = {
     customers: 10,
-    products: 100,
+    products: 10,
     support: 24,
-    brands: 150
+    brands: 10
   };
 
   // Animation duration in seconds
@@ -87,7 +87,7 @@ const About = () => {
       >
         <div className="hero-content">
           <h1>Our Story</h1>
-          <p>Discover what makes ShopZone different</p>
+          <p>Discover what makes ShopEase different</p>
         </div>
       </motion.section>
 
@@ -106,7 +106,7 @@ const About = () => {
           <div className="section-content">
             <h2>Our Mission</h2>
             <p>
-              At ShopZone, we're revolutionizing online shopping by combining cutting-edge 
+              At ShopEase, we're revolutionizing online shopping by combining cutting-edge 
               technology with exceptional customer service. We believe everyone deserves 
               access to quality products at fair prices.
             </p>
@@ -145,14 +145,14 @@ const About = () => {
         {/* Team Section */}
         <section className="team-section">
           <h2>Meet The Team</h2>
-          <p className="team-subtitle">The passionate people behind ShopZone</p>
+          <p className="team-subtitle">The passionate people behind ShopEase</p>
           
           <div className="team-grid">
             <div className="team-member">
               <div className="member-image">
                 <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Team Member" />
               </div>
-              <h3>Sarah Johnson</h3>
+              <h3>Aniba Shakeel</h3>
               <p className="position">CEO & Founder</p>
               <p className="bio">With 15 years in e-commerce, Sarah leads our vision for customer-centric shopping.</p>
             </div>
@@ -161,7 +161,7 @@ const About = () => {
               <div className="member-image">
                 <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Team Member" />
               </div>
-              <h3>Michael Chen</h3>
+              <h3>M-Atif Cheema</h3>
               <p className="position">CTO</p>
               <p className="bio">Tech innovator building the platform that powers your shopping experience.</p>
             </div>
@@ -180,11 +180,11 @@ const About = () => {
         {/* Stats Section */}
         <section className="stats-section">
           <div className="stat-item">
-            <h3>{stats.customers}M+</h3>
+            <h3>{stats.customers}</h3>
             <p>Happy Customers</p>
           </div>
           <div className="stat-item">
-            <h3>{stats.products}K+</h3>
+            <h3>{stats.products}</h3>
             <p>Products Available</p>
           </div>
           <div className="stat-item">

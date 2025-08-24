@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import "./Footer.css";
 
 // Social media icons as components
@@ -23,6 +24,24 @@ const InstagramIcon = () => (
 );
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await axios.post("http://localhost:5000/api/subscribe", {
+        email,
+      });
+      setMessage(res.data.message);
+      setEmail("");
+    } catch (error) {
+      console.error(error);
+      setMessage(error.response?.data?.error || "Something went wrong, please try again.");
+    }
+  };
+
   // Smooth scroll to top function
   const scrollToTop = () => {
     window.scrollTo({
@@ -43,7 +62,7 @@ const Footer = () => {
         <div className="footer-main">
           {/* Company Info */}
           <div className="footer-section">
-            <h3 className="footer-heading">ShopZone</h3>
+            <h3 className="footer-heading">ShopEase</h3>
             <p className="footer-text">
               Your one-stop destination for fashion, electronics, and more. 
               We're committed to delivering quality products and exceptional service.
@@ -65,18 +84,10 @@ const Footer = () => {
           <div className="footer-section">
             <h3 className="footer-heading">Quick Links</h3>
             <ul className="footer-links">
-              <li>
-                <Link to="/" className="footer-link">Home</Link>
-              </li>
-              <li>
-                <Link to="/products" className="footer-link">Products</Link>
-              </li>
-              <li>
-                <Link to="/about" className="footer-link">About Us</Link>
-              </li>
-              <li>
-                <Link to="/contact" className="footer-link">Contact</Link>
-              </li>
+              <li><Link to="/" className="footer-link">Home</Link></li>
+              <li><Link to="/shop" className="footer-link">Products</Link></li>
+              <li><Link to="/about" className="footer-link">About Us</Link></li>
+              <li><Link to="/contact" className="footer-link">Contact</Link></li>
             </ul>
           </div>
 
@@ -84,18 +95,10 @@ const Footer = () => {
           <div className="footer-section">
             <h3 className="footer-heading">Customer Service</h3>
             <ul className="footer-links">
-              <li>
-                <Link to="/faq" className="footer-link">FAQs</Link>
-              </li>
-              <li>
-                <Link to="/shipping" className="footer-link">Shipping Policy</Link>
-              </li>
-              <li>
-                <Link to="/returns" className="footer-link">Returns & Refunds</Link>
-              </li>
-              <li>
-                <Link to="/privacy" className="footer-link">Privacy Policy</Link>
-              </li>
+              <li><Link to="/faq" className="footer-link">FAQs</Link></li>
+              <li><Link to="/shipping" className="footer-link">Shipping Policy</Link></li>
+              <li><Link to="/returns" className="footer-link">Returns & Refunds</Link></li>
+              <li><Link to="/privacy" className="footer-link">Privacy Policy</Link></li>
             </ul>
           </div>
 
@@ -105,24 +108,27 @@ const Footer = () => {
             <p className="footer-text">
               Subscribe to get updates on new arrivals and special offers.
             </p>
-            <form className="newsletter-form">
+            <form className="newsletter-form" onSubmit={handleSubmit}>
               <input 
                 type="email" 
                 placeholder="Your email address" 
                 className="newsletter-input"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
               <button type="submit" className="newsletter-button">
                 Subscribe
               </button>
             </form>
+            {message && <p className="newsletter-message">{message}</p>}
           </div>
         </div>
 
         {/* Footer Bottom */}
         <div className="footer-bottom">
           <p className="copyright">
-            &copy; {new Date().getFullYear()} ShopZone. All rights reserved.
+            &copy; {new Date().getFullYear()} ShopEase. All rights reserved.
           </p>
           <div className="payment-methods">
             <span className="payment-icon">💳</span>

@@ -18,16 +18,16 @@ import ViewCart from "./components/ViewCart";
 import Signup from "./components/Signup";
 import ForgotPassword from "./components/ForgotPassword";
 import ResetPassword from "./components/ResetPassword";
-
-// 🆕 Profile page import
+import ProtectedRoute from "./components/ProtectedRoute";
+import ContactUs from './components/ContactUs'
 import Profile from "./components/Profile"; 
-
+import Faq from './components/FAQPage'
+import FAQPage from "./components/FAQPage";
 function App() {
   return (
           <CartProvider>
 
     <AuthProvider>
-      {/* <CartProvider> */}
         <Router>
           <Navbar />
           <Routes>
@@ -40,21 +40,29 @@ function App() {
             <Route path="/checkout" element={<CheckoutForm />} />
             <Route path="/products/:id" element={<ProductDetail />} />
             <Route path="/ai" element={<AI />} />
-            <Route path="/AddProduct" element={<AddProduct />} />
+            <Route path="/contact" element={<ContactUs/>}/>
+            <Route path="/faq" element={<FAQPage/>} />
+             
+      <Route 
+        path="/Add-product" 
+        element={
+          <ProtectedRoute>
+            <AddProduct />
+          </ProtectedRoute>
+        } 
+      />
             <Route path="/order-confirmation" element={<OrderConfirmation />} />
             <Route path="/ViewCart" element={<ViewCart />} />
             <Route path="/ForgotPassword" element={<ForgotPassword />} />
             <Route path="/Signup" element={<Signup />} />
             <Route path="/reset-password/:token" element={<ResetPassword />} />
 
-            {/* 🆕 Profile page ka route */}
             <Route path="/profile" element={<Profile />} />
           </Routes>
 
           <ChatWidget /> 
           <Footer />
         </Router>
-      {/* </CartProvider> */}
     </AuthProvider>
           </CartProvider>
 

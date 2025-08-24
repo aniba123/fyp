@@ -214,7 +214,7 @@ const ProductDetailsPage = () => {
       
       <ProductDetailInfo>
         <h1>{product.name}</h1>
-        <DetailPrice>${product.price.toFixed(2)}</DetailPrice>
+        <DetailPrice>PKR {product.price.toFixed(2)}</DetailPrice>
         
         {/* <DetailRating>
           <div className="stars">

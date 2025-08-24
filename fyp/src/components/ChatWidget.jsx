@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-
 const ChatWidget = () => {
   useEffect(() => {
     // Step 1: Set the global window.ChatWidgetConfig object
@@ -9,7 +8,7 @@ const ChatWidget = () => {
         route: 'general',
       },
       branding: {
-        logo: 'https://your-domain.com/logo.png',  // Replace with your logo URL
+        logo: "https://images.vexels.com/media/users/3/197046/raw/d70337c7aecbf9f3d8196b103041e9ae-e-commerce-logo-template.jpg",  // Replace with your logo URL
         name: 'ShopEase.io',
         welcomeText: 'Hi 👋, how can we help?...',
         responseTimeText: 'We typically respond right away',
