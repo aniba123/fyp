@@ -86,7 +86,7 @@ function Navbar() {
                   className="nav-link"
                   onClick={() => setMenuOpen(false)}
                 >
-                  Add Product
+                  Dashboard
                 </Link>
               </li>
             )}

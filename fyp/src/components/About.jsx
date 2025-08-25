@@ -1,5 +1,7 @@
 
 import React, { useState, useEffect } from "react";
+import anibaImg from "../assets/aniba.png";
+
 import { motion } from "framer-motion";
 import "./About.css";
 
@@ -150,7 +152,7 @@ const About = () => {
           <div className="team-grid">
             <div className="team-member">
               <div className="member-image">
-                <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Team Member" />
+<img src={anibaImg} alt="Team Member" />
               </div>
               <h3>Aniba Shakeel</h3>
               <p className="position">CEO & Founder</p>
@@ -166,14 +168,14 @@ const About = () => {
               <p className="bio">Tech innovator building the platform that powers your shopping experience.</p>
             </div>
             
-            <div className="team-member">
+            {/* <div className="team-member">
               <div className="member-image">
                 <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Team Member" />
               </div>
               <h3>Emily Rodriguez</h3>
               <p className="position">Head of Customer Experience</p>
               <p className="bio">Ensuring every interaction with ShopZone exceeds your expectations.</p>
-            </div>
+            </div> */}
           </div>
         </section>
 
