@@ -112,7 +112,7 @@ const About = () => {
               technology with exceptional customer service. We believe everyone deserves 
               access to quality products at fair prices.
             </p>
-            <button className="cta-button">Learn More</button>
+            <button className="cta-button"><a href="/contact">Learn More</a></button>
           </div>
         </section>
 
@@ -156,7 +156,7 @@ const About = () => {
               </div>
               <h3>Aniba Shakeel</h3>
               <p className="position">CEO & Founder</p>
-              <p className="bio">With 15 years in e-commerce, Sarah leads our vision for customer-centric shopping.</p>
+              <p className="bio">With 15 years in e-commerce, Aniba leads our vision for customer-centric shopping.</p>
             </div>
             
             <div className="team-member">
@@ -168,14 +168,7 @@ const About = () => {
               <p className="bio">Tech innovator building the platform that powers your shopping experience.</p>
             </div>
             
-            {/* <div className="team-member">
-              <div className="member-image">
-                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Team Member" />
-              </div>
-              <h3>Emily Rodriguez</h3>
-              <p className="position">Head of Customer Experience</p>
-              <p className="bio">Ensuring every interaction with ShopZone exceeds your expectations.</p>
-            </div> */}
+           
           </div>
         </section>
 

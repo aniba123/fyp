@@ -139,7 +139,10 @@
   transition: all 0.2s ease;
   font-size: 1rem;
 }
-
+.cta-button a{
+    color: white;
+text-decoration: none;
+}
 .cta-button:hover {
   background-color: var(--primary-hover);
   transform: translateY(-2px);

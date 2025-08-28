@@ -44,7 +44,7 @@ const StatsSection = () => {
     {
       id: 4,
       animation: brandAnimation,
-      value: 150,
+      value: 5,
       suffix: '+',
       title: 'Brand Partners',
       duration: 2,
